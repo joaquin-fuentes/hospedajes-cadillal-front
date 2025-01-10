@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useHospedajesStore from "../store/hospedajesStore"; // Importamos el store
+import CardHospedaje from "../components/hospedajes/CardHospedaje";
 
 const Hospedajes = () => {
   const { hospedajes, fetchHospedajes } = useHospedajesStore(); // Leemos los hospedajes y la función para traerlos desde el store
@@ -122,44 +123,7 @@ const Hospedajes = () => {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {hospedajesFiltrados.map((hospedaje) => (
-            <div
-              data-aos="fade-up"
-              key={hospedaje._id} // Asegúrate de usar `_id` del backend
-              className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden"
-            >
-              <img
-                src={hospedaje.imagenes[0]}
-                alt={hospedaje.nombre}
-                className="w-full h-40 object-cover"
-              />
-              <div className="p-6">
-                <h2 className="text-2xl font-semibold mb-2">
-                  {hospedaje.nombre}
-                </h2>
-                <p className="text-gray-600 dark:text-gray-300 line-clamp-1">
-                  {hospedaje.descripcion}
-                </p>
-
-                <p className="text-sm mt-2">
-                  <strong>Capacidad:</strong> {hospedaje.capacidadMin} -{" "}
-                  {hospedaje.capacidadMax} personas
-                </p>
-                <p className="text-sm mt-1">
-                  <strong>Piscina:</strong> {hospedaje.piscina ? "Sí" : "No"}
-                </p>
-                <p className="text-sm mt-1">
-                  <strong>Tipo:</strong> {hospedaje.tipo}
-                </p>
-                <div className="flex justify-center mt-4">
-                  <Link
-                    to={`/hospedaje/${hospedaje._id}`} // Se usa `_id` si viene del backend
-                    className="bg-blue-600 dark:bg-yellow-400 dark:text-gray-800 text-white py-2 px-4 rounded-full hover:bg-blue-700 dark:hover:bg-yellow-500 transition duration-300"
-                  >
-                    Ver más detalles
-                  </Link>
-                </div>
-              </div>
-            </div>
+            <CardHospedaje hospedaje={hospedaje}></CardHospedaje>
           ))}
         </div>
       )}
