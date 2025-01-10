@@ -3,8 +3,8 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  base: "/", // Base para rutas relativas
+  base: "/", 
   build: {
-    outDir: "dist", // Carpeta de salida para Vercel
+    outDir: "dist", 
   },
 });
