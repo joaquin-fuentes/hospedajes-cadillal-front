@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import useHospedajesStore from "../../store/hospedajesStore"; // Importamos el store
 import { FaWhatsapp } from "react-icons/fa"; // Icono de WhatsApp
 import Slider from "react-slick"; // Importamos el slider
+import Loading from "../Loading";
 
 const DetalleHospedaje = () => {
   const { id } = useParams(); // Obtenemos el ID del hospedaje desde la URL
@@ -25,15 +26,16 @@ const DetalleHospedaje = () => {
 
   if (!hospedaje) {
     return (
-      <div className="h-screen flex flex-col items-center justify-center text-center bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white p-6">
-        <h1 className="text-3xl font-bold mb-4">Hospedaje no encontrado</h1>
-        <Link
-          to="/hospedajes"
-          className="bg-blue-600 dark:bg-yellow-500 text-white py-2 px-4 rounded-full hover:bg-blue-700 dark:hover:bg-yellow-600 transition duration-300"
-        >
-          Volver a la lista de hospedajes
-        </Link>
-      </div>
+      // <div className="h-screen flex flex-col items-center justify-center text-center bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white p-6">
+      //   <h1 className="text-3xl font-bold mb-4">Hospedaje no encontrado</h1>
+      //   <Link
+      //     to="/hospedajes"
+      //     className="bg-blue-600 dark:bg-yellow-500 text-white py-2 px-4 rounded-full hover:bg-blue-700 dark:hover:bg-yellow-600 transition duration-300"
+      //   >
+      //     Volver a la lista de hospedajes
+      //   </Link>
+      // </div>
+      <Loading texto="Cargando hospedajes..."></Loading>
     );
   }
 
