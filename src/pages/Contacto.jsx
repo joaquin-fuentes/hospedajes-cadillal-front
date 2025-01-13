@@ -19,7 +19,7 @@ const Contacto = () => {
       user_name: data.nombre,
       email_id: data.email,
       phone_number: data.telefono,
-      message: data.mensaje,
+      message: `Hola, este es un msj desde formulario de contacto. Mensaje adicional: ${data.mensaje}`,
       to_name: "Joaquin",
       subject: `Nuevo mensaje de: ${data.nombre} en web Hospedajes Cadillal`,
     };
