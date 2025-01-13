@@ -4,7 +4,10 @@ import PropTypes from "prop-types";
 
 const Loading = ({ texto = "Cargando..." }) => {
   return (
-    <div className="flex justify-center items-center space-x-4 p-6 bg-gray-100 dark:bg-gray-900">
+    <div
+      data-aos="fade-up"
+      className="flex justify-center items-center space-x-4 p-6 bg-gray-100 dark:bg-gray-900"
+    >
       {/* Icono de carga giratorio */}
       <FaSpinner className="animate-spin text-blue-600 dark:text-yellow-400 text-4xl" />
       {/* Texto dinámico recibido por prop */}
