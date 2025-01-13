@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useHospedajesStore from "../store/hospedajesStore"; // Importamos el store
 import CardHospedaje from "../components/hospedajes/CardHospedaje";
+import Loading from "../components/Loading";
 
 const Hospedajes = () => {
   const { hospedajes, fetchHospedajes } = useHospedajesStore(); // Leemos los hospedajes y la función para traerlos desde el store
@@ -114,12 +115,13 @@ const Hospedajes = () => {
 
       {/* Listado de Hospedajes o Mensaje de No Resultados */}
       {hospedajesFiltrados.length === 0 ? (
-        <div
-          data-aos="fade-up"
-          className="text-center text-xl text-gray-600 dark:text-gray-300 mt-8"
-        >
-          No hay hospedajes que cumplan con los criterios de búsqueda.
-        </div>
+        // <div
+        //   data-aos="fade-up"
+        //   className="text-center text-xl text-gray-600 dark:text-gray-300 mt-8"
+        // >
+        //   No hay hospedajes que cumplan con los criterios de búsqueda.
+        // </div>
+        <Loading texto="Cargando hospedajes..."></Loading>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {hospedajesFiltrados.map((hospedaje) => (
