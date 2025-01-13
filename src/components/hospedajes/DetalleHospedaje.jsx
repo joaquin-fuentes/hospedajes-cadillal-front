@@ -35,7 +35,7 @@ const DetalleHospedaje = () => {
       //     Volver a la lista de hospedajes
       //   </Link>
       // </div>
-      <Loading texto="Cargando hospedajes..."></Loading>
+      <Loading texto="Cargando hospedaje..."></Loading>
     );
   }
 
