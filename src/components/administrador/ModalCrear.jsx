@@ -34,7 +34,8 @@ const ModalCrear = ({ onClose, onCreate }) => {
       imagenes: [""],
     },
   });
-
+    
+  
   const { fields, append, remove } = useFieldArray({
     control,
     name: "imagenes",
