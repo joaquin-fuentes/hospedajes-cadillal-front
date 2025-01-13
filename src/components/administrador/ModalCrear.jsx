@@ -19,6 +19,7 @@ const ModalCrear = ({ onClose, onCreate }) => {
       capacidadMax: 1,
       tipo: "Cabaña",
       piscina: false,
+      wifi: false,
       ubicacion: "",
       nombreDuenio: "",
       telefono: "",
@@ -222,6 +223,12 @@ const ModalCrear = ({ onClose, onCreate }) => {
                 className="w-5 h-5"
               />
               <label className="font-semibold">Piscina</label>
+              <input
+                type="checkbox"
+                {...register("wifi")}
+                className="w-5 h-5"
+              />
+              <label className="font-semibold">Wifi</label>
             </div>
           </div>
 

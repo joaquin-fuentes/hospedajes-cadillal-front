@@ -83,6 +83,9 @@ const ModalDetalle = ({ hospedaje, onClose }) => {
               <strong>Piscina:</strong> {hospedaje.piscina ? "Sí" : "No"}
             </p>
             <p>
+              <strong>Wifi:</strong> {hospedaje.wifi ? "Sí" : "No"}
+            </p>
+            <p>
               <strong>Precio por Día:</strong> ${hospedaje.precioPorPersona}
             </p>
             <p>

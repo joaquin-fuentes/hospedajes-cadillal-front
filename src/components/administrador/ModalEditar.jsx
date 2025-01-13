@@ -174,6 +174,12 @@ const ModalEditar = ({ hospedaje, onClose, onSave }) => {
                   className="w-5 h-5"
                 />
                 <label className="font-semibold">Piscina</label>
+                <input
+                  type="checkbox"
+                  {...register("wifi")}
+                  className="w-5 h-5"
+                />
+                <label className="font-semibold">Wifi</label>
               </div>
             </div>
 

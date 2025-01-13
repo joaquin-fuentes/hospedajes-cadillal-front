@@ -119,10 +119,14 @@ const DetalleHospedaje = () => {
             <strong>Piscina:</strong> {hospedaje.piscina ? "Sí" : "No"}
           </p>
           <p>
+            <strong>Wifi:</strong> {hospedaje.wifi ? "Sí" : "No"}
+          </p>
+          <p>
             <strong>Ubicación:</strong> {hospedaje.ubicacion}
           </p>
           <p>
-            <strong>Precio por persona:</strong> ${hospedaje.precioPorPersona}
+            <strong>Precio por día:</strong> ${hospedaje.precioPorPersona} por
+            persona
           </p>
         </div>
 
