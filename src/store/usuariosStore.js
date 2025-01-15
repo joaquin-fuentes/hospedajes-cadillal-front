@@ -9,17 +9,18 @@ const useUsuariosStore = create((set) => ({
   // Iniciar sesión (POST /api/usuarios/login)
   login: async (nombreUsuario, password) => {
     try {
-      const response = await fetch(`${API_USUARIO}/login`, {
+      const response = await fetch(`${API_USUARIO}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ nombreUsuario, password }),
       });
+       console.log(response)
       if (response.ok) {
         const data = await response.json();
+        sessionStorage.setItem("usuario", JSON.stringify(data)); // Guarda en sessionStorage
         set({ usuario: data.nombre, token: data.token });
-        console.log("Usuario autenticado:", data);
         return data;
       } else {
         console.error("Credenciales incorrectas");
@@ -29,7 +30,6 @@ const useUsuariosStore = create((set) => ({
       console.error("Error al iniciar sesión:", error);
     }
   },
-
   // Obtener todos los usuarios (GET /api/usuarios)
   fetchUsuarios: async () => {
     try {
@@ -43,7 +43,10 @@ const useUsuariosStore = create((set) => ({
   },
 
   // Cerrar sesión
-  logout: () => set({ usuario: null, token: null }),
+  logout: () => {
+    sessionStorage.removeItem("usuario"); // Limpia sessionStorage al cerrar sesión
+    set({ usuario: null, token: null });
+  },
 }));
 
 export default useUsuariosStore;

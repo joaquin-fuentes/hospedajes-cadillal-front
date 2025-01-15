@@ -8,8 +8,13 @@ import ModalCrear from "../components/administrador/ModalCrear";
 import dayjs from "dayjs"; // Para manejar fechas
 import useFormatDate from "../hooks/userformatDate";
 import useNotificationStore from "../store/notificacionStore";
+import useUsuariosStore from "../store/usuariosStore";
+import ModalLogout from "../components/login/ModalLogout";
+import ModalLogoutSuccess from "../components/login/ModalLogoutSuccess";
 
 const AdminPanel = () => {
+  const logout = useUsuariosStore((state) => state.logout);
+
   const {
     hospedajes,
     fetchHospedajes,
@@ -26,6 +31,9 @@ const AdminPanel = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false); // Estado para abrir/cerrar el modal de logout
+  const [isLogoutSuccessModalOpen, setIsLogoutSuccessModalOpen] =
+    useState(false); // Estado para abrir/cerrar el modal de éxito
 
   // Cargar los hospedajes al montar el componente
   useEffect(() => {
@@ -43,6 +51,11 @@ const AdminPanel = () => {
       item[filterBy].toLowerCase().includes(keyword)
     );
     setFilteredData(result);
+  };
+  const handleLogout = () => {
+    logout(); // Limpia la sesión
+    setIsLogoutModalOpen(false); // Cierra el modal de confirmación
+    setIsLogoutSuccessModalOpen(true); // Abre el modal de éxito
   };
 
   const openEditModal = (hospedaje) => {
@@ -126,6 +139,13 @@ const AdminPanel = () => {
         <h1 className="text-4xl font-bold">Panel de Administración</h1>
       </div>
       <div className="flex flex-wrap justify-between items-center mb-6 gap-4">
+        <button
+          onClick={() => setIsLogoutModalOpen(true)} // Abre el modal de logout
+          className="bg-red-600 text-white py-2 px-4 rounded-lg"
+        >
+          Cerrar sesión
+        </button>
+
         <div>
           <input
             type="text"
@@ -240,6 +260,17 @@ const AdminPanel = () => {
       )}
       {isCreateModalOpen && (
         <ModalCrear onClose={closeCreateModal} onCreate={handleCreate} />
+      )}
+      {isLogoutModalOpen && (
+        <ModalLogout
+          onConfirm={handleLogout} // Cierra sesión
+          onCancel={() => setIsLogoutModalOpen(false)} // Cancela y cierra el modal
+        />
+      )}
+      {isLogoutSuccessModalOpen && (
+        <ModalLogoutSuccess
+          onClose={() => setIsLogoutSuccessModalOpen(false)}
+        />
       )}
     </div>
   );

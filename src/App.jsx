@@ -13,6 +13,8 @@ import ScrollToTop from "./components/ScrollToTop";
 import MainLayout from "./components/MainLayout";
 import useNotificationStore from "./store/notificacionStore";
 import ModalNotificacion from "./components/administrador/ModalNotificacion";
+import ProtectedRoute from "./components/ProtectedRoute"; // Importación del componente ProtectedRoute
+import Login from "./pages/Login"; // Importación del Login
 
 function App() {
   const { notification, closeNotification } = useNotificationStore();
@@ -28,7 +30,7 @@ function App() {
         />
       )}
       <Routes>
-        {/* Rutas con el layout principal */}
+        {/* Rutas públicas con el layout principal */}
         <Route
           path="/"
           element={
@@ -93,14 +95,20 @@ function App() {
             </MainLayout>
           }
         />
+        <Route path="/login" element={<Login />} />
+
+        {/* Ruta protegida para AdminPanel */}
         <Route
           path="/admin"
           element={
-            <MainLayout>
-              <AdminPanel />
-            </MainLayout>
+            <ProtectedRoute>
+              <MainLayout>
+                <AdminPanel />
+              </MainLayout>
+            </ProtectedRoute>
           }
         />
+
         {/* Ruta de Error 404 sin Layout */}
         <Route path="*" element={<Error404 />} />
       </Routes>
