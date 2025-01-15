@@ -23,7 +23,7 @@ const Contacto = () => {
       to_name: "Joaquin",
       subject: `Nuevo mensaje de: ${data.nombre} en web Hospedajes Cadillal`,
     };
-
+ 
     try {
       await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
